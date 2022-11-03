@@ -13,7 +13,7 @@ describe('mushroom routes', () => {
   it('/mushrooms should return a list of mushrooms', async () => {
     const res = await request(app).get('/mushrooms');
     const expected = mushrooms.map((mushroom) => {
-      return { id: mushroom.id, name: mushroom.common_name };
+      return { id: mushroom.id, name: mushroom.commonName };
     });
     expect(res.body).toEqual(expected);
   });
