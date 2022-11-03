@@ -13,7 +13,7 @@ describe('mushroom routes', () => {
   it('/mushrooms should return a list of mushrooms', async () => {
     const res = await request(app).get('/mushrooms');
     const expected = mushrooms.map((mushroom) => {
-      return { id: mushroom.id, name: mushroom.commonName };
+      return { id: mushroom.id, commonName: mushroom.common_name };
     });
     expect(res.body).toEqual(expected);
   });
@@ -22,10 +22,10 @@ describe('mushroom routes', () => {
     const res = await request(app).get('/mushrooms/1');
     const veiledLady = {
       id: '1',
-      common_name: 'Veiled Lady',
-      binomial_name: 'Phallus indusiatus',
+      commonName: 'Veiled Lady',
+      binomialName: 'Phallus indusiatus',
       url: 'https://en.wikipedia.org/wiki/Phallus_indusiatus#/media/File:Phallus_indusiatus_02.JPG',
-      scientific_order: 'Phallales',
+      scientificOrder: 'Phallales',
       edible: true,
     };
     expect(res.body).toEqual(veiledLady);
