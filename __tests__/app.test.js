@@ -45,6 +45,20 @@ describe('millipede routes', () => {
     });
     expect(res.body).toEqual(expected);
   });
+
+  it('/millipedes/:id should return details on a particular millipede', async () => {
+    const res = await request(app).get('/millipedes/1');
+    const pillMillipede = {
+      id: '1',
+      commonName: 'Pill Millipede',
+      binomialName: 'Glomeris marginata',
+      url: 'https://en.wikipedia.org/wiki/Pill_millipede#/media/File:Glomeris_vs_Armidillidium.jpg',
+      scientificOrder: 'Diplopoda',
+      edible: true,
+    };
+    expect(res.body).toEqual(pillMillipede);
+  });
+
   afterAll(() => {
     pool.end();
   });
