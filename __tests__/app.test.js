@@ -60,7 +60,6 @@ describe('millipede routes', () => {
       edible: true,
     };
     expect(res.body).toEqual(pillMillipede);
-    console.log(res.body);
   });
 });
 
