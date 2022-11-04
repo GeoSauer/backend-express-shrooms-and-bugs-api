@@ -6,6 +6,9 @@ const app = require('../lib/app');
 const { mushrooms } = require('../lib/mushrooms-data.js');
 const { millipedes } = require('../lib/millipedes-data.js');
 
+// jest.useRealTimers();
+jest.setTimeout(10 * 1000);
+
 describe('mushroom routes', () => {
   beforeEach(() => {
     return setup(pool);
@@ -57,9 +60,10 @@ describe('millipede routes', () => {
       edible: true,
     };
     expect(res.body).toEqual(pillMillipede);
+    console.log(res.body);
   });
+});
 
-  afterAll(() => {
-    pool.end();
-  });
+afterAll(() => {
+  pool.end();
 });
