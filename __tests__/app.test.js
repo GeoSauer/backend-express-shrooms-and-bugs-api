@@ -4,6 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 const { mushrooms } = require('../lib/mushrooms-data.js');
+const { millipedes } = require('../lib/millipedes-data.js');
 
 describe('mushroom routes', () => {
   beforeEach(() => {
@@ -33,5 +34,19 @@ describe('mushroom routes', () => {
 
   afterAll(() => {
     pool.end();
+  });
+});
+
+describe('millipede routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  it('/millipedes should return a list of millipedes', async () => {
+    const res = await request(app).get('./millipedes');
+    const expected = millipedes.map((millipede) => {
+      return { id: millipede.id, commonName: millipede.common_name };
+    });
+    expect(res.body).toEqual(expected);
   });
 });
