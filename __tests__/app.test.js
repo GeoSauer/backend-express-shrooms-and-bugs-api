@@ -31,10 +31,6 @@ describe('mushroom routes', () => {
     };
     expect(res.body).toEqual(veiledLady);
   });
-
-  afterAll(() => {
-    pool.end();
-  });
 });
 
 describe('millipede routes', () => {
@@ -43,10 +39,13 @@ describe('millipede routes', () => {
   });
 
   it('/millipedes should return a list of millipedes', async () => {
-    const res = await request(app).get('./millipedes');
+    const res = await request(app).get('/millipedes');
     const expected = millipedes.map((millipede) => {
       return { id: millipede.id, commonName: millipede.common_name };
     });
     expect(res.body).toEqual(expected);
+  });
+  afterAll(() => {
+    pool.end();
   });
 });
